@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shoppingprovider/db/db.dart';
+import 'package:shoppingprovider/model/cart_model.dart';
 import 'package:shoppingprovider/views/itempage.dart';
 
 class HomePage extends StatelessWidget {
@@ -73,7 +74,12 @@ class HomePage extends StatelessWidget {
                   return InkWell(
                     onTap: () => Navigator.of(context).push(MaterialPageRoute(
                         builder: (context) => ItemPage(
-                              index: index,
+                              cartModel: CartModel(
+                                  name: data["name"],
+                                  description: data['description'],
+                                  imagePath: data['imagePath'],
+                                  price: data['price'],
+                                  quantity: 1),
                             ))),
                     child: Container(
                       child: Column(
