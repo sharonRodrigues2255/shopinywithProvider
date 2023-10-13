@@ -23,36 +23,56 @@ class CartPge extends StatelessWidget {
               padding: const EdgeInsets.all(12.0),
               child: Card(
                 elevation: 4,
-                child: Container(
-                  height: 100,
-                  width: double.infinity,
-                  child: Row(
+                child: Dismissible(
+                  key: Key(data.name),
+                  onDismissed: (direction) {
+                    provider.removeFromCart(index);
+                  },
+                  child: Stack(
                     children: [
-                      SizedBox(
-                        width: 10,
-                      ),
-                      Image(image: AssetImage(data.imagePath)),
-                      SizedBox(
-                        width: 20,
-                      ),
                       Container(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.center,
+                        height: 100,
+                        width: double.infinity,
+                        child: Row(
                           children: [
-                            Text(
-                              data.name,
-                              style: TextStyle(
-                                  fontSize: 30, fontWeight: FontWeight.bold),
+                            SizedBox(
+                              width: 10,
                             ),
-                            Text(
-                              'Price \$ ${data.price * provider.quantity}',
-                              style: TextStyle(
-                                  fontSize: 18, fontWeight: FontWeight.w500),
+                            Image(image: AssetImage(data.imagePath)),
+                            SizedBox(
+                              width: 20,
+                            ),
+                            Container(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    data.name,
+                                    style: TextStyle(
+                                        fontSize: 30,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                  Text(
+                                    'Price \$ ${data.price}',
+                                    style: TextStyle(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.w500),
+                                  )
+                                ],
+                              ),
                             )
                           ],
                         ),
-                      )
+                      ),
+                      Positioned(
+                          top: 10,
+                          right: 10,
+                          child: InkWell(
+                              onTap: () {
+                                provider.removeFromCart(index);
+                              },
+                              child: Icon(Icons.delete)))
                     ],
                   ),
                 ),

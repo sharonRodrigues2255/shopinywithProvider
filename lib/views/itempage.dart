@@ -132,15 +132,18 @@ class ItemPage extends StatelessWidget {
               const Spacer(),
               InkWell(
                 onTap: () {
+                  final price = cartModel.price * quantity;
                   provider.addtoCart(CartModel(
                       name: cartModel.name,
                       description: cartModel.description,
                       imagePath: cartModel.imagePath,
-                      price: cartModel.price * quantity));
+                      price: price));
                   Navigator.of(context)
-                      .push(MaterialPageRoute(builder: (context) {
+                      .pushReplacement(MaterialPageRoute(builder: (context) {
                     return CartPge();
                   }));
+
+                  provider.quantity = 1;
                 },
                 child: Container(
                   decoration: BoxDecoration(

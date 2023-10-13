@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shoppingprovider/db/db.dart';
 import 'package:shoppingprovider/model/cart_model.dart';
+import 'package:shoppingprovider/views/cartpage.dart';
 import 'package:shoppingprovider/views/itempage.dart';
 
 class HomePage extends StatelessWidget {
@@ -15,7 +16,14 @@ class HomePage extends StatelessWidget {
           style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
         ),
         actions: [
-          Icon(Icons.shopping_cart),
+          InkWell(
+              onTap: () {
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) {
+                  return CartPge();
+                }));
+              },
+              child: Icon(Icons.shopping_cart)),
           SizedBox(
             width: 20,
           )

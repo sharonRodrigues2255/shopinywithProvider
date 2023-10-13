@@ -12,7 +12,7 @@ class CartController extends ChangeNotifier {
   }
 
   subsquantity() {
-    if (quantity > 0) {
+    if (quantity > 1) {
       quantity = quantity - 1;
     }
     notifyListeners();
